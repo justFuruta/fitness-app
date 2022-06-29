@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/cat-pinterest/static/css/main.84fbfb73.css",
+    "main.js": "/cat-pinterest/static/js/main.861b778e.js",
+    "static/media/banner.png": "/cat-pinterest/static/media/banner.5209b5e92a864ca0c615.png",
+    "static/media/gym.png": "/cat-pinterest/static/media/gym.6e701417c428e2fbc267.png",
+    "index.html": "/cat-pinterest/index.html",
+    "main.84fbfb73.css.map": "/cat-pinterest/static/css/main.84fbfb73.css.map",
+    "main.861b778e.js.map": "/cat-pinterest/static/js/main.861b778e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.84fbfb73.css",
+    "static/js/main.861b778e.js"
+  ]
+}
