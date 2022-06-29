@@ -4,19 +4,17 @@ import { fetchData, exerciseOptions, Iexercises } from '../utils/fetchData'
 import HorizontalScrollBar from './HorizontalScrollBar'
 
 type Props = {
-    bodyPart: string;
-    setBodyPart: React.Dispatch<React.SetStateAction<string>>;
     setExercises: React.Dispatch<React.SetStateAction<Array<Iexercises>>>
 }
 
-const SearchExercises = ({ bodyPart, setBodyPart, setExercises }: Props) => {
-    
+const SearchExercises = ({ setExercises }: Props) => {
+
     const [search, setSearch] = useState<string>('')
     const [bodyParts, setBodyParts] = useState<Array<string>>([])
 
     useEffect(() => {
         const fetchExercisesDate = async () => {
-            const bodyPartData:Array<string> = await fetchData('bodyPartList', exerciseOptions)
+            const bodyPartData: Array<string> = await fetchData<Array<string>>('/bodyPartList', exerciseOptions)
             setBodyParts(['all', ...bodyPartData])
         }
 
@@ -29,7 +27,7 @@ const SearchExercises = ({ bodyPart, setBodyPart, setExercises }: Props) => {
 
     const searchHandle = async () => {
         if (search) {
-            const data:Array<Iexercises> = await fetchData('', exerciseOptions)
+            const data: Array<Iexercises> = await fetchData<Array<Iexercises>>('', exerciseOptions)
             const searchedExercises = data.filter((item): boolean => {
                 return item.name.toLowerCase().includes(search)
                     || item.bodyPart.toLowerCase().includes(search)
@@ -117,7 +115,7 @@ const SearchExercises = ({ bodyPart, setBodyPart, setExercises }: Props) => {
                     p: '20px'
                 }}
             >
-                <HorizontalScrollBar data={bodyParts} bodyPart={bodyPart} setBodyPart={setBodyPart}/>
+                <HorizontalScrollBar data={bodyParts} />
             </Box>
         </Stack>
     )

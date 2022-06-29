@@ -24,7 +24,7 @@ const Navbar = (props: Props) => {
                 alignItems="flex-end"
             >
                 <Link to="/" className='navlink active'>Home</Link>
-                <a href='#exercise' className='navlink'>Exercises</a>
+                <a href='/#exercise' className='navlink'>Exercises</a>
             </Stack>
         </Stack>
     )

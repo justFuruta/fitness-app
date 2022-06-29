@@ -159,3 +159,8 @@ body {
 .active {
     border-bottom: 3px solid #ff2625;
 }
+
+.icon {
+    width: 40px;
+    height: 40px;
+}

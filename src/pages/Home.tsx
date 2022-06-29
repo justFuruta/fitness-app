@@ -1,20 +1,42 @@
-import React, { useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { Box } from '@mui/material'
 import HeroBanner from '../components/HeroBanner'
 import SearchExercises from '../components/SearchExercises'
 import Exercises from '../components/Exercises'
-import { Iexercises } from '../utils/fetchData'
+import { exerciseOptions, fetchData, Iexercises } from '../utils/fetchData'
 type Props = {}
 
+export type TbodyPartContext = {
+    bodyPart: string;
+    setBodyPart: React.Dispatch<React.SetStateAction<string>>;
+}
+export const BodyPartContext = createContext<TbodyPartContext | null>(null)
 const Home = (props: Props) => {
     const [bodyPart, setBodyPart] = useState<string>('all')
     const [exercises, setExercises] = useState<Array<Iexercises>>([])
+   
+    useEffect(() => {
+        const fetchExercisesData = async () => {
+            let data:Array<Iexercises> = []
+            if(bodyPart === 'all') {
+                data = await fetchData('', exerciseOptions)
+            } else {
+                data = await fetchData(`/bodyPart/${bodyPart}`, exerciseOptions)
+            }
+            setExercises(data)
+
+        }
+        fetchExercisesData()
+    }, [bodyPart])
+
     return (
-        <Box>
-            <HeroBanner />
-            <SearchExercises bodyPart={bodyPart} setBodyPart={setBodyPart}  setExercises={setExercises} />
-            <Exercises exercises={exercises}/>
-        </Box>
+        <BodyPartContext.Provider value={{bodyPart, setBodyPart}}>
+            <Box>
+                <HeroBanner />
+                <SearchExercises setExercises={setExercises} />
+                <Exercises exercises={exercises}/>
+            </Box>
+        </BodyPartContext.Provider>
 
     )
 }

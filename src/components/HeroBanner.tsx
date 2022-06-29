@@ -49,7 +49,7 @@ const HeroBanner = (props: Props) => {
             <Button
                 variant='contained'
                 color='error'
-                href='#exercises'
+                href='#exercise'
                 sx={{
                     bgcolor: "ff2625",
                     padding: '10px '
